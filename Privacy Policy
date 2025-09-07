@@ -1,0 +1,6 @@
+Privacy Policy
+
+TopTube does not collect, transmit, or sell any personal information.
+The only data stored is the YouTube API key and user preferences (region, max results), which are saved locally via Chrome storage and not shared with anyone.
+All video data is fetched directly from the official YouTube Data API v3.
+No analytics, ads, or tracking are used.
