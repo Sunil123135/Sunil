@@ -1,0 +1,26 @@
+# Development environment for the data-science Jupyter notebooks in this repo.
+# Install with:  pip install --user -r requirements.txt
+# Versions are intentionally unpinned; the notebooks are standalone learning
+# projects and run on the current major releases of these packages.
+
+# Jupyter (run notebooks: `jupyter lab` from the repo root)
+jupyterlab
+notebook
+nbconvert
+ipykernel
+
+# Core data-science / statistics stack
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+statsmodels
+scikit-learn
+
+# Machine learning / deep learning
+xgboost
+tensorflow      # provides keras
+h5py
+scikit-surprise # recommendation systems (imported as `surprise`)
+pydotplus       # decision-tree visualization
