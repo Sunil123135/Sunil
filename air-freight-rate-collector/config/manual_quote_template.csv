@@ -1,0 +1,6 @@
+collected_at_utc,source,rate_type,origin,destination,lane,weight_break_kg,currency,usd_per_kg_mid,notes
+2026-08-27T00:00:00+00:00,manual_forwarder_quote,indicative_list_rate,BOM,LHR,BOM-LHR,300,USD,,Paste weekly eCargoRates / airline GSA quote here
+2026-08-27T00:00:00+00:00,manual_forwarder_quote,indicative_list_rate,BOM,FRA,BOM-FRA,300,USD,,
+2026-08-27T00:00:00+00:00,manual_forwarder_quote,indicative_list_rate,BOM,DXB,BOM-DXB,300,USD,,
+2026-08-27T00:00:00+00:00,manual_forwarder_quote,indicative_list_rate,DEL,LHR,DEL-LHR,300,USD,,
+2026-08-27T00:00:00+00:00,manual_forwarder_quote,indicative_list_rate,BLR,LHR,BLR-LHR,300,USD,,

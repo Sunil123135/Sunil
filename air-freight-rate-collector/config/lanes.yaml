@@ -1,0 +1,62 @@
+# Priority lanes focused on Mumbai (BOM) and major gateways.
+# Quotes use Freightos public marketplace calculator (no paid key).
+# Tip: marketplace coverage is uneven — some airport pairs return numQuotes=0.
+# Keep request volume low; Freightos rate-limits aggressive polling (HTTP 429).
+
+request_delay_seconds: 8.0
+user_agent: "AirFreightRateCollector/1.0 (+research; respectful rate limits)"
+
+freightos:
+  base_url: "https://ship.freightos.com/api/shippingCalculator"
+  max_requests_per_run: 6
+  stop_on_rate_limit: true
+  max_retries: 1
+  retry_backoff_seconds: 60
+  # Dense cargo dims so volumetric weight does not dominate chargeable weight.
+  # One primary weight break keeps weekly runs under marketplace rate limits.
+  weight_breaks_kg:
+    - 300
+  dim_cm_by_weight:
+    300: { length: 60, width: 60, height: 60 }
+    1000: { length: 100, width: 100, height: 100 }
+  air_vol_divisor: 6000  # IATA standard cm³/kg
+
+lanes:
+  # Known-good coverage in live probes (2026-08)
+  - { origin: BOM, destination: LHR, region: India-Europe, priority: true }
+  - { origin: BOM, destination: FRA, region: India-Europe, priority: true }
+  - { origin: BOM, destination: DXB, region: India-ME, priority: true }
+  # Extended set — may return no_quote or hit rate limits; rotate across weeks
+  - { origin: DEL, destination: LHR, region: India-Europe, priority: true }
+  - { origin: DEL, destination: FRA, region: India-Europe, priority: false }
+  - { origin: DEL, destination: DXB, region: India-ME, priority: false }
+  - { origin: BLR, destination: LHR, region: India-Europe, priority: false }
+  - { origin: BLR, destination: FRA, region: India-Europe, priority: false }
+  - { origin: BOM, destination: AMS, region: India-Europe, priority: false }
+  - { origin: BOM, destination: JFK, region: India-NA, priority: false }
+  - { origin: HKG, destination: LHR, region: Asia-Europe, priority: false }
+  - { origin: HKG, destination: ORD, region: Asia-NA, priority: false }
+  - { origin: PVG, destination: FRA, region: Asia-Europe, priority: false }
+  - { origin: SIN, destination: LHR, region: Asia-Europe, priority: false }
+  - { origin: DXB, destination: LHR, region: ME-Europe, priority: false }
+  - { origin: LHR, destination: BOM, region: Europe-India, priority: false }
+  - { origin: FRA, destination: BOM, region: Europe-India, priority: false }
+  # Observed no marketplace coverage in probe (kept for retry over time)
+  - { origin: BOM, destination: HKG, region: India-Asia, priority: false }
+  - { origin: BOM, destination: SIN, region: India-Asia, priority: false }
+
+proxies:
+  fred_csv:
+    - { id: WPU301401, name: us_air_freight_ppi, url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WPU301401" }
+    - { id: WPU057203, name: us_jet_fuel_ppi, url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=WPU057203" }
+    - { id: DEXINUS, name: usd_inr, url: "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXINUS" }
+  eia_jet_monthly_xls: "https://www.eia.gov/dnav/pet/hist_xls/EER_EPJK_PF4_RGC_DPGm.xls"
+  eia_series_id: EER_EPJK_PF4_RGC_DPG
+
+shaq:
+  enabled: true
+  url: "https://search.shaq-logistics.com/api/freight-index"
+
+drewry_public:
+  enabled: true
+  url: "https://www.drewry.co.uk/supply-chain-advisors/supply-chain-expertise/airfreight-index"

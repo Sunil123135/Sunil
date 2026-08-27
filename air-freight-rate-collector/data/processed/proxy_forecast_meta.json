@@ -1,0 +1,12 @@
+{
+  "model": "log_ols_freight_ppi ~ jet + usd_inr",
+  "holdout_mape_pct": 2.79,
+  "n_train_months": 206,
+  "generated_at_utc": "2026-08-27T16:33:50.057568+00:00",
+  "note": "Proxy forecast only \u2014 not lane-level BOM $/kg.",
+  "coefficients": {
+    "intercept": 2.9295271972823462,
+    "log_jet": 0.11144357824681683,
+    "log_usd_inr": 0.2867720550096258
+  }
+}

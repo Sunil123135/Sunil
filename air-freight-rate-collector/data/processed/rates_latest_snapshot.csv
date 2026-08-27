@@ -1,0 +1,27 @@
+collected_at_utc,source,rate_type,lane,origin,destination,weight_break_kg,usd_per_kg_min,usd_per_kg_mid,usd_per_kg_max,attribution
+2026-08-27 16:01:43.835304+00:00,freightos_shipping_calculator,marketplace_estimate,BOM-LHR,BOM,LHR,300.0,8.45,9.263333333333334,10.076666666666666,Data courtesy Freightos — https://www.freightos.com
+2026-08-27 16:01:43.835304+00:00,freightos_shipping_calculator,marketplace_estimate,BOM-LHR,BOM,LHR,1000.0,7.83,8.895,9.96,Data courtesy Freightos — https://www.freightos.com
+2026-08-27 16:01:43.835304+00:00,freightos_shipping_calculator,marketplace_estimate,BOM-FRA,BOM,FRA,300.0,7.95,8.1,8.25,Data courtesy Freightos — https://www.freightos.com
+2026-08-27 16:01:43.835304+00:00,freightos_shipping_calculator,marketplace_estimate,BOM-FRA,BOM,FRA,1000.0,7.53,7.68,7.83,Data courtesy Freightos — https://www.freightos.com
+2026-08-27 16:01:43.835304+00:00,freightos_shipping_calculator,marketplace_estimate,BOM-DXB,BOM,DXB,300.0,6.65,6.65,6.65,Data courtesy Freightos — https://www.freightos.com
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Vancouver,Shenzhen,Vancouver,,5.8,5.8,5.8,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Tokyo,Shenzhen,Tokyo,,2.5,2.5,2.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Sydney,Shenzhen,Sydney,,4.2,4.2,4.2,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Singapore,Shenzhen,Singapore,,3.2,3.2,3.2,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Santos,Shenzhen,Santos,,7.2,7.2,7.2,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Rotterdam,Shenzhen,Rotterdam,,4.8,4.8,4.8,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Nhava Sheva (Mumbai),Shenzhen,Nhava Sheva (Mumbai),,3.5,3.5,3.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-New York,Shenzhen,New York,,6.5,6.5,6.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Manzanillo,Shenzhen,Manzanillo,,6.0,6.0,6.0,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Jebel Ali (Dubai),Shenzhen,Jebel Ali (Dubai),,3.8,3.8,3.8,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Lagos,Shenzhen,Lagos,,7.0,7.0,7.0,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Vostochny,Shenzhen,Vostochny,,3.5,3.5,3.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Istanbul,Shenzhen,Istanbul,,5.5,5.5,5.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Ho Chi Minh,Shenzhen,Ho Chi Minh,,2.8,2.8,2.8,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Genoa,Shenzhen,Genoa,,5.2,5.2,5.2,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Durban,Shenzhen,Durban,,6.5,6.5,6.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Callao,Shenzhen,Callao,,6.8,6.8,6.8,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Busan,Shenzhen,Busan,,2.2,2.2,2.2,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Buenos Aires,Shenzhen,Buenos Aires,,7.5,7.5,7.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.205647+00:00,shaq_sfx,forwarder_index,Shenzhen-Los Angeles,Shenzhen,Los Angeles,,5.5,5.5,5.5,"SHAQ Freight Rate Index (SFX), SHAQ Logistics"
+2026-08-27 16:03:29.972957+00:00,drewry_public_page,public_composite,GLOBAL-COMPOSITE,GLOBAL,GLOBAL,1000.0,3.93,3.93,3.93,Drewry public Airfreight Price Index page (marketing snapshot)
