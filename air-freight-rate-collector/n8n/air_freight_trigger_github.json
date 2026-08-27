@@ -1,0 +1,44 @@
+{
+  "name": "Air Freight Trigger GitHub Actions (n8n Cloud)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "30 0 * * 0" }] }
+      },
+      "id": "schedule1",
+      "name": "Sunday 00:30 UTC",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{$env.GITHUB_OWNER}}/{{$env.GITHUB_REPO}}/actions/workflows/weekly-collect.yml/dispatches",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "Authorization", "value": "=Bearer {{$env.GITHUB_PAT}}" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"ref\":\"master\",\"inputs\":{\"run_id\":\"n8n-{{$now.toISO()}}\",\"mode\":\"all\"}}",
+        "options": {}
+      },
+      "id": "gh1",
+      "name": "Dispatch GitHub workflow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [300, 0]
+    }
+  ],
+  "connections": {
+    "Sunday 00:30 UTC": {
+      "main": [[{ "node": "Dispatch GitHub workflow", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}
