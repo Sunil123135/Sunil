@@ -1,0 +1,96 @@
+{
+  "name": "Air Freight Weekly Collect (self-hosted)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "30 0 * * 0" }] }
+      },
+      "id": "schedule1",
+      "name": "Sunday 00:30 UTC",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "command": "cd \"$AIR_FREIGHT_DIR\" && PYTHONPATH=. python3 -m src.run_collect --all"
+      },
+      "id": "collect1",
+      "name": "Collect rates + proxies",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [280, 0]
+    },
+    {
+      "parameters": {
+        "command": "cd \"$AIR_FREIGHT_DIR\" && PYTHONPATH=. python3 -m src.forecast_proxy_baseline"
+      },
+      "id": "forecast1",
+      "name": "Proxy forecast",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [560, 0]
+    },
+    {
+      "parameters": {
+        "command": "cd \"$AIR_FREIGHT_DIR\" && bash scripts/cron/sync_to_fabric.sh || echo 'sync skipped - set ONELAKE_URL'"
+      },
+      "id": "sync1",
+      "name": "Sync to Fabric/OneLake",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [840, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.FABRIC_PIPELINE_URL}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{$env.FABRIC_TOKEN}}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {}
+      },
+      "id": "fabric1",
+      "name": "Trigger Fabric pipeline (optional)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 0],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Next\nConfigure email/Slack node for success/failure.\nSet env: AIR_FREIGHT_DIR, ONELAKE_URL, FABRIC_PIPELINE_URL, FABRIC_TOKEN",
+        "height": 240,
+        "width": 360
+      },
+      "id": "note1",
+      "name": "Setup notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [280, 200]
+    }
+  ],
+  "connections": {
+    "Sunday 00:30 UTC": {
+      "main": [[{ "node": "Collect rates + proxies", "type": "main", "index": 0 }]]
+    },
+    "Collect rates + proxies": {
+      "main": [[{ "node": "Proxy forecast", "type": "main", "index": 0 }]]
+    },
+    "Proxy forecast": {
+      "main": [[{ "node": "Sync to Fabric/OneLake", "type": "main", "index": 0 }]]
+    },
+    "Sync to Fabric/OneLake": {
+      "main": [[{ "node": "Trigger Fabric pipeline (optional)", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": { "templateCredsSetupCompleted": false }
+}
