@@ -1,5 +1,7 @@
 # Air Freight Rate Collector (Free-Source Workaround)
 
+> **Standalone project** — lives on branch [`air-freight-rate-collector`](https://github.com/Sunil123135/Sunil/tree/air-freight-rate-collector) until you run [`MIGRATION.md`](MIGRATION.md) to create `Sunil123135/air-freight-rate-collector`.
+
 **Yes — you can get actual $/kg observations without a paid TAC/WorldACD subscription**, but only by **building your own history from free live quotes + free proxies**. You cannot unlock someone else’s 10-year audited lane archive for free.
 
 ## Start here (next steps + all orchestration options)
