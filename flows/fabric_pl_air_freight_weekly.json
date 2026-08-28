@@ -1,0 +1,30 @@
+{
+  "name": "pl_air_freight_weekly",
+  "description": "Descriptive stub for a Fabric Data Pipeline. Recreate in Fabric UI: Notebook 01 -> Notebook 02 -> (optional) Notebook 03.",
+  "activities": [
+    {
+      "name": "ingest",
+      "type": "Notebook",
+      "notebook": "01_collect_and_ingest",
+      "dependsOn": []
+    },
+    {
+      "name": "proxy_forecast",
+      "type": "Notebook",
+      "notebook": "02_forecast_proxy_baseline",
+      "dependsOn": ["ingest"]
+    },
+    {
+      "name": "lane_sarimax",
+      "type": "Notebook",
+      "notebook": "03_forecast_lane_sarimax",
+      "dependsOn": ["proxy_forecast"],
+      "enabled": false,
+      "note": "Enable after ≥40 weekly OK points per lane"
+    }
+  ],
+  "schedule": {
+    "cron_utc": "0 1 * * 0",
+    "comment": "Sunday 01:00 UTC — run AFTER collector upload, or trigger via API instead of fixed schedule"
+  }
+}
