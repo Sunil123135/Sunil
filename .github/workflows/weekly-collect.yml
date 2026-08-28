@@ -64,7 +64,6 @@ jobs:
             air-freight-rate-collector/artifacts/*
 
       - name: Optional SharePoint upload
-        if: ${{ secrets.SHAREPOINT_CLIENT_ID != '' }}
         working-directory: air-freight-rate-collector
         env:
           SHAREPOINT_TENANT_ID: ${{ secrets.SHAREPOINT_TENANT_ID }}
@@ -74,14 +73,22 @@ jobs:
           SHAREPOINT_DRIVE_ID: ${{ secrets.SHAREPOINT_DRIVE_ID }}
           SHAREPOINT_FOLDER: incoming
           RUN_ID: ${{ github.event.inputs.run_id || github.run_id }}
-        run: PYTHONPATH=. python scripts/upload_to_sharepoint.py
+        run: |
+          if [ -z "${SHAREPOINT_CLIENT_ID:-}" ]; then
+            echo "SharePoint upload skipped (secrets not configured)"
+            exit 0
+          fi
+          PYTHONPATH=. python scripts/upload_to_sharepoint.py
 
       - name: Optional Fabric pipeline trigger
-        if: ${{ secrets.FABRIC_TRIGGER_URL != '' }}
         env:
           FABRIC_TRIGGER_URL: ${{ secrets.FABRIC_TRIGGER_URL }}
           FABRIC_TOKEN: ${{ secrets.FABRIC_SPN_TOKEN }}
         run: |
+          if [ -z "${FABRIC_TRIGGER_URL:-}" ]; then
+            echo "Fabric pipeline trigger skipped (secrets not configured)"
+            exit 0
+          fi
           curl -sS -X POST "$FABRIC_TRIGGER_URL" \
             -H "Authorization: Bearer $FABRIC_TOKEN" \
             -H "Content-Type: application/json" \
